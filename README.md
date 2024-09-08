@@ -29,7 +29,10 @@ This repository contains the configuration for setting up multiple Ubuntu VMs us
 vagrant up
 
 #login to WSL2
+
 whoami
+git config --global user.name "kpoxo6op"
+git config --global user.email "kpoxo6op@gmail.com"
 cat ~/.ssh/id_rsa
 ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -q -N ""
 
