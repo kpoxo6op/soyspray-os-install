@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
         # VirtualBox provider-specific settings
         vm.vm.provider "virtualbox" do |vb|
           vb.name = setting[:name]  # Set the name in VirtualBox GUI
-          vb.memory = "1024"  # Adjust memory if needed
+          vb.memory = "512"  # Adjust memory if needed
           vb.cpus = 1        # Adjust CPU count if needed
         end
   
@@ -33,7 +33,6 @@ Vagrant.configure("2") do |config|
           sudo apt-get update -y
           sudo apt-get upgrade -y
           sudo apt-get install -y openssh-server
-          sudo apt-get install -y virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
         SHELL
       end
     end
