@@ -76,26 +76,38 @@ cat ~/.ssh/id_rsa.pub | ssh -i ~/.ssh/insecure_private_key vagrant@192.168.56.10
 cat ~/.ssh/id_rsa.pub | ssh -i ~/.ssh/insecure_private_key vagrant@192.168.56.11 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
 cat ~/.ssh/id_rsa.pub | ssh -i ~/.ssh/insecure_private_key vagrant@192.168.56.12 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
 
-# Access VMs directly using their IPs
-ssh vagrant@192.168.56.10
-echo "vagrant ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
-ssh vagrant@192.168.56.11
-echo "vagrant ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
-ssh vagrant@192.168.56.12
-echo "vagrant ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
+# Allow vagrant User to Execute sudo Without Password Prompt:
+ssh vagrant@192.168.56.10 "echo 'vagrant ALL=(ALL) NOPASSWD:ALL' | sudo tee -a /etc/sudoers"
+ssh vagrant@192.168.56.11 "echo 'vagrant ALL=(ALL) NOPASSWD:ALL' | sudo tee -a /etc/sudoers"
+ssh vagrant@192.168.56.12 "echo 'vagrant ALL=(ALL) NOPASSWD:ALL' | sudo tee -a /etc/sudoers"
 
-# Install Python 3 and sshpass
-# Required for Kubespray and Ansible setup
+# Verify setup
+ssh vagrant@192.168.56.10 "sudo whoami"
+
+# Install Python 3, pip, and sshpass: These are needed for Kubespray to work.
 ssh vagrant@192.168.56.10 "sudo apt-get update && sudo apt-get install -y python3 python3-pip sshpass"
 ssh vagrant@192.168.56.11 "sudo apt-get update && sudo apt-get install -y python3 python3-pip sshpass"
 ssh vagrant@192.168.56.12 "sudo apt-get update && sudo apt-get install -y python3 python3-pip sshpass"
 
-# Install Kubespray Python Requirements
-# Clone the Kubespray repository, navigate to its directory, and install the required Python dependencies:
-ssh vagrant@192.168.56.10 "git clone https://github.com/kubernetes-sigs/kubespray.git && cd kubespray && sudo pip3 install --ignore-installed -r requirements.txt"
-ssh vagrant@192.168.56.11 "git clone https://github.com/kubernetes-sigs/kubespray.git && cd kubespray && sudo pip3 install --ignore-installed -r requirements.txt"
-ssh vagrant@192.168.56.12 "git clone https://github.com/kubernetes-sigs/kubespray.git && cd kubespray && sudo pip3 install --ignore-installed -r requirements.txt"
+# Upgrade pip: Ensure pip is the latest version to avoid dependency issues.
+ssh vagrant@192.168.56.10 "sudo -H pip3 install --upgrade pip"
+ssh vagrant@192.168.56.11 "sudo -H pip3 install --upgrade pip"
+ssh vagrant@192.168.56.12 "sudo -H pip3 install --upgrade pip"
 
-# Verify setup
-ssh vagrant@192.168.56.10 "sudo whoami"
+# Clone Kubespray and Install Python Requirements:
+ssh vagrant@192.168.56.10 "
+    if [ ! -d kubespray ]; then
+        git clone https://github.com/kubernetes-sigs/kubespray.git;
+    fi && cd kubespray && sudo pip3 install --ignore-installed -r requirements.txt
+"
+ssh vagrant@192.168.56.11 "
+    if [ ! -d kubespray ]; then
+        git clone https://github.com/kubernetes-sigs/kubespray.git;
+    fi && cd kubespray && sudo pip3 install --ignore-installed -r requirements.txt
+"
+ssh vagrant@192.168.56.12 "
+    if [ ! -d kubespray ]; then
+        git clone https://github.com/kubernetes-sigs/kubespray.git;
+    fi && cd kubespray && sudo pip3 install --ignore-installed -r requirements.txt
+"
 ```

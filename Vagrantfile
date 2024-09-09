@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
     # Define the base box for Ubuntu
-    config.vm.box = "ubuntu/bionic64"
+    config.vm.box = "ubuntu/jammy64"
   
     # Create an array of VM names and their static IP addresses
     vm_settings = [
@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
         # VirtualBox provider-specific settings
         vm.vm.provider "virtualbox" do |vb|
           vb.name = setting[:name]  # Set the name in VirtualBox GUI
-          vb.memory = "512"  # Adjust memory if needed
+          vb.memory = "1024"  # Adjust memory if needed
           vb.cpus = 1        # Adjust CPU count if needed
         end
   
@@ -33,6 +33,7 @@ Vagrant.configure("2") do |config|
           sudo apt-get update -y
           sudo apt-get upgrade -y
           sudo apt-get install -y openssh-server
+          sudo apt-get install -y virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
         SHELL
       end
     end
