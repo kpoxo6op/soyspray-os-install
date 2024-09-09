@@ -52,4 +52,16 @@ ssh -p 2224 vagrant@127.0.0.1 "sudo apt-get update && sudo apt-get install -y py
 
 # Verify Setup
 ssh -p 2222 vagrant@127.0.0.1 "sudo whoami"
+
+
+# windows. Will it persist?
+PS C:\Users\borex> netsh interface portproxy add v4tov4 listenport=2222 listenaddress=127.0.0.1 connectport=22 connectaddress=192.168.56.10
+
+PS C:\Users\borex> netsh interface portproxy add v4tov4 listenport=2223 listenaddress=127.0.0.1 connectport=22 connectaddress=192.168.56.11
+
+PS C:\Users\borex> netsh interface portproxy add v4tov4 listenport=2224 listenaddress=127.0.0.1 connectport=22 connectaddress=192.168.56.12
+
+boris@borex-pc:~/code/vagrant-ubuntu-vms$ cat ~/.ssh/id_rsa.pub | ssh -i ~/.ssh/insecure_private_key vagrant@192.168.56.10 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+boris@borex-pc:~/code/vagrant-ubuntu-vms$ ssh vagrant@192.168.56.10
 ```
+
