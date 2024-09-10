@@ -130,3 +130,29 @@ try to  uninstall vagrant
 ```batch
 wmic product where "name like 'Vagrant%'" call uninstall /nointeractive
 ```
+
+start over from the simplest vagrantfile
+
+```Vagrantfile
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/jammy64"
+
+  config.vm.define "vm1" do |vm|
+    vm.vm.network "private_network", ip: "192.168.56.10"
+
+    vm.vm.provision "shell", inline: <<-SHELL
+      sudo apt-get update -y
+      sudo apt-get upgrade -y
+    SHELL
+  end
+end
+```
+
+
+Test SSH access from WSL2 again.
+
+```sh
+mkdir -p ~/.vagrant.d
+cp /mnt/c/Users/borex/.vagrant.d/insecure_private_key ~/.vagrant.d/insecure_private_key
+chmod 600 ~/.vagrant.d/insecure_private_key
+ssh -i ~/.vagrant.d/insecure_private_key vagrant@192.168.56.10
