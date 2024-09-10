@@ -24,6 +24,8 @@ Vagrant.configure("2") do |config|
 
       # VirtualBox provider-specific settings
       vm.vm.provider "virtualbox" do |vb|
+        vb.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
+        vb.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
         vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
         vb.name = setting[:name]  # Set the name in VirtualBox GUI
         vb.memory = "512"  # Adjust memory if needed

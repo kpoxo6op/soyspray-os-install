@@ -4,19 +4,20 @@ This repository contains the configuration for setting up multiple Ubuntu VMs us
 
 ## Prerequisites
 
-1. **VirtualBox Installation**
-   - Download the VirtualBox installer from the [official website](https://www.virtualbox.org/wiki/Downloads).
-   - Install VirtualBox using the installer with the `/norestart` option to avoid a reboot:
-     ```powershell
-     Start-Process -FilePath "VirtualBox-Installer.exe" -ArgumentList "--silent --ignore-reboot" -Wait
-     ```
+Install VirtualBox
+Download the VirtualBox installer from the [official website](https://www.virtualbox.org/wiki/Downloads).
 
-2. **Vagrant Installation**
-   - Download the Vagrant installer from the [official website](https://www.vagrantup.com/downloads).
-   - Install Vagrant using the following command to avoid a reboot:
-     ```powershell
-     Start-Process -FilePath "msiexec.exe" -ArgumentList "/i `"$env:TEMP\Vagrant-Installer.msi`" /qn REBOOT=ReallySuppress" -Wait
-     ```
+```powershell
+Start-Process -FilePath "VirtualBox-Installer.exe" -ArgumentList "--silent --ignore-reboot" -Wait
+```
+
+Install Vagrant
+
+```powershell
+Invoke-WebRequest -Uri "https://releases.hashicorp.com/vagrant/2.4.1/vagrant_2.4.1_windows_amd64.msi" -OutFile "$env:TEMP\Vagrant-Installer.msi"
+
+Start-Process -FilePath "msiexec.exe" -ArgumentList "/i `"$env:TEMP\Vagrant-Installer.msi`" /qn REBOOT=ReallySuppress" -Wait
+```
 
 ## Setting Up VMs Using Vagrant
 
@@ -110,4 +111,22 @@ ssh vagrant@192.168.56.12 "
         git clone https://github.com/kubernetes-sigs/kubespray.git;
     fi && cd kubespray && sudo pip3 install --ignore-installed -r requirements.txt
 "
+```
+
+
+## Troubleshooting
+
+Vagrant gets stuck at 
+
+```ruby
+==> vm1: Waiting for machine to boot. This may take a few minutes...
+    vm1: SSH address: 127.0.0.1:2222
+    vm1: SSH username: vagrant
+    vm1: SSH auth method: private key
+```
+
+try to  uninstall vagrant
+
+```batch
+wmic product where "name like 'Vagrant%'" call uninstall /nointeractive
 ```
