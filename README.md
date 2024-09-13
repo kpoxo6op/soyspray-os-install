@@ -156,3 +156,14 @@ mkdir -p ~/.vagrant.d
 cp /mnt/c/Users/borex/.vagrant.d/insecure_private_key ~/.vagrant.d/insecure_private_key
 chmod 600 ~/.vagrant.d/insecure_private_key
 ssh -i ~/.vagrant.d/insecure_private_key vagrant@192.168.56.10
+```
+
+Download Ubuntu Server
+
+```powershell
+Invoke-WebRequest -Uri "https://mirror.2degrees.nz/ubuntu-releases/24.04.1/ubuntu-24.04.1-live-server-amd64.iso" -OutFile "C:\Users\borex\Downloads\ubuntu-24.04.1-live-server-amd64.iso"
+```
+
+Write image with Rufus (no CLI) to USB drive.
+
+Write [user-data](./user-data) to USB.
