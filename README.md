@@ -168,8 +168,7 @@ Write image with Rufus (no CLI) to USB drive.
 
 ```powershell
 New-Item -Path "F:\autoinstall" -ItemType Directory -Force
-Copy-Item "user-data" -Destination "F:\autoinstall\"
-Copy-Item "meta-data" -Destination "F:\autoinstall\"
+Copy-Item -Path "C:\Users\borex\code\vagrant-ubuntu-vms\autoinstall" -Destination "F:\" -Recurse -Force
 ```
 
 Add `autoinstall ds=nocloud;s=/cdrom/autoinstall/` to the linux or append line in grub.cfg or txt.cfg respectively
