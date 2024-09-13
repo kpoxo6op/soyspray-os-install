@@ -166,4 +166,22 @@ Invoke-WebRequest -Uri "https://mirror.2degrees.nz/ubuntu-releases/24.04.1/ubunt
 
 Write image with Rufus (no CLI) to USB drive.
 
-Write [user-data](./user-data) to USB.
+```powershell
+New-Item -Path "F:\autoinstall" -ItemType Directory -Force
+Copy-Item "user-data" -Destination "F:\autoinstall\"
+Copy-Item "meta-data" -Destination "F:\autoinstall\"
+```
+
+Add `autoinstall ds=nocloud;s=/cdrom/autoinstall/` to the linux or append line in grub.cfg or txt.cfg respectively
+
+Example Boot Configuration Modification:
+
+For grub.cfg:
+
+linux /casper/vmlinuz boot=casper autoinstall ds=nocloud\;s=/cdrom/autoinstall/ quiet ---
+
+For txt.cfg:
+
+append initrd=/casper/initrd boot=casper autoinstall ds=nocloud\;s=/cdrom/autoinstall/ quiet ---
+
+
