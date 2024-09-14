@@ -1,16 +1,10 @@
 #cloud-config
-# Note: The network interface name `enp0s3` is guessed based on typical naming
-# conventions. If the installation does not connect to the network, use direct
-# console access to determine the correct network interface name and adjust it
-# accordingly.
-
-# password is 123
 autoinstall:
   version: 1
   identity:
     hostname: k8s-node-1
     username: ubuntu
-    password: "$6$/9uLuqz503PqQgKX$30GylSgOyQkUSy3Nu.gUkCfObp86N9usmMay72qs3tyTQGTrt/lwnAsAtZ4msDy6ZgthMowrIIia/0NcwFGwq0"
+    password: "$6$PwhY9$vfjsdxP.Cs3cfAg/eDn1ZmxhPqdwiy4v.PBy5mUQqFwA3uDMSvI0O6rrUV9J1.jI2rFiMQefLCOzJAfWn1t.W0"
   ssh:
     install-server: true
     authorized-keys:
@@ -32,6 +26,18 @@ autoinstall:
     - git
     - sshpass
   late-commands:
-    - echo "ubuntu ALL=(ALL) NOPASSWD:ALL" >> /target/etc/sudoers
+    - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' >> /target/etc/sudoers
     - curtin in-target --target=/target -- apt-get update
     - curtin in-target --target=/target -- apt-get install -y python3-pip
+  locale: en_NZ.UTF-8
+  keyboard:
+    layout: nz
+  timezone: Pacific/Auckland
+  storage:
+    layout:
+      name: direct
+      match:
+        size: 1G to 500G
+      preserve: false
+      swap: false
+      
