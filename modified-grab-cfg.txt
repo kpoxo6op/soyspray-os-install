@@ -7,8 +7,10 @@ set menu_color_highlight=black/light-gray
 
 menuentry "Try or Install Ubuntu Server" {
 	set gfxpayload=keep
-	# linux	/casper/vmlinuz  ---
-	linux	/casper/vmlinuz boot=casper autoinstall ds=nocloud;s=/cdrom/autoinstall/ quiet ---
+	linux	/casper/vmlinuz  ---
+	# linux	/casper/vmlinuz boot=casper autoinstall ds=nocloud;s=/cdrom/autoinstall/ quiet ---
+	# linux /casper/vmlinuz quiet autoinstall ds=nocloud\;s=/cdrom/nocloud/ ---	
+	linux /casper/vmlinuz boot=casper iso-scan/filename=/cloud-init.iso quiet ---
 	initrd	/casper/initrd
 }
 grub_platform
