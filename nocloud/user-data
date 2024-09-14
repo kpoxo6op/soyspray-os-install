@@ -4,9 +4,10 @@ autoinstall:
   identity:
     hostname: k8s-node-1
     username: ubuntu
-    password: "$6$PwhY9$vfjsdxP.Cs3cfAg/eDn1ZmxhPqdwiy4v.PBy5mUQqFwA3uDMSvI0O6rrUV9J1.jI2rFiMQefLCOzJAfWn1t.W0"
+    password: '$6$PwhY9$vfjsdxP.Cs3cfAg/eDn1ZmxhPqdwiy4v.PBy5mUQqFwA3uDMSvI0O6rrUV9J1.jI2rFiMQefLCOzJAfWn1t.W0'
   ssh:
     install-server: true
+    allow-pw: yes
     authorized-keys:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCr7WZBwguXRF8o+mVtM7iHyzR14nU8bFIQcScSFphYkNEyK3ThkauVEc3zZzGi6F1ZaBS1pDDIBIPO7nASB444jkJAw9rKbkKZYXdqB2B9vIAFCRT8/tnR+ckKtX57C2DlE9924+e6PiOyeZXNMBmqfb35PjszISOKWiZPw42k1yCAcaNnMSZTWp2/7h8yOMFogwhL7xjEGHizBwSqICA0upT39S9PQUiGhRvhjYUqejOUd5zuAd2+wkRgq4kU43alYZjCUPqBJOt4VUQaBi0Ex3vJaijmkYAJ+THU1TvkLZ4dCu4+UvFoKxODLLpFZMPXHJovnn2K2RYuibcMK4KB boris@borex-pc"
   # network:
