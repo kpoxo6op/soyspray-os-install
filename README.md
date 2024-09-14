@@ -184,3 +184,21 @@ For txt.cfg:
 append initrd=/casper/initrd boot=casper autoinstall ds=nocloud\;s=/cdrom/autoinstall/ quiet ---
 
 
+### Another cloud init try with cloudinit ISO
+
+```sh
+boris@borex-pc:~/code/vagrant-ubuntu-vms/autoinstall$ genisoimage -output cloud-init.iso -volid cidata -joliet -rock user-data meta-data
+```
+
+Press Del at SOYO mini PC boot
+
+Verify Cloud-Init ISO is Mounted During Installation. Ctrl+Alt+F2
+
+```sh
+lsblk
+mount | grep cidata
+```
+
+```sh
+less /var/log/cloud-init.log
+```
