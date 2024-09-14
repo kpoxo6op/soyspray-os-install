@@ -5,9 +5,9 @@ autoinstall:
     hostname: k8s-node-1
     username: ubuntu
     # mkpasswd -m sha-512 123
-    password: '$1$LMI4ymCx$385STA7OgfNVMY9u9P84V1'
+    # password: '$1$LMI4ymCx$385STA7OgfNVMY9u9P84V1'
     # mkpasswd -m sha-512 123
-    # '$6$woKNTIGG4EIjt5vX$Ty3PkCtU6.jU286UCGdQNPA7OHPf97BRIFwhzeKEF5qcTrjLgqXxFKa2rSoBm5TzS9Cih.RMgTYOT505vUBGj.'
+    '$6$woKNTIGG4EIjt5vX$Ty3PkCtU6.jU286UCGdQNPA7OHPf97BRIFwhzeKEF5qcTrjLgqXxFKa2rSoBm5TzS9Cih.RMgTYOT505vUBGj.'
   ssh:
     install-server: true
     allow-pw: yes
