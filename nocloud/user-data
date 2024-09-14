@@ -21,14 +21,14 @@ autoinstall:
           addresses:
             - 192.168.1.1
   packages:
-    - python3
-    - python3-pip
-    - git
-    - sshpass
+    # - python3
+    # - python3-pip
+    # - git
+    # - sshpass
   late-commands:
     - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' >> /target/etc/sudoers
-    - curtin in-target --target=/target -- apt-get update
-    - curtin in-target --target=/target -- apt-get install -y python3-pip
+    # - curtin in-target --target=/target -- apt-get update
+    # - curtin in-target --target=/target -- apt-get install -y python3-pip
   locale: en_NZ.UTF-8
   keyboard:
     layout: us
