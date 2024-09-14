@@ -4,7 +4,8 @@ autoinstall:
   identity:
     hostname: k8s-node-1
     username: ubuntu
-    password: '$6$PwhY9$vfjsdxP.Cs3cfAg/eDn1ZmxhPqdwiy4v.PBy5mUQqFwA3uDMSvI0O6rrUV9J1.jI2rFiMQefLCOzJAfWn1t.W0'
+    # 123
+    password: '$1$LMI4ymCx$385STA7OgfNVMY9u9P84V1'
   ssh:
     install-server: true
     allow-pw: yes
