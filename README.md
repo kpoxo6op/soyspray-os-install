@@ -202,3 +202,7 @@ mount | grep cidata
 ```sh
 less /var/log/cloud-init.log
 ```
+
+## Day 3
+
+Set static IPs with ASUS mobile app via DHCP
