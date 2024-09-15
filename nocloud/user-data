@@ -16,8 +16,6 @@ autoinstall:
     - sleep 10
     - cp -r /cdrom/yt6801-linux-driver-1.0.29 /target/tmp
     - sleep 10
-  late-comamnds:
-    - curtin in-target -- /tmp/yt6801-linux-driver-1.0.29/yt_nic_install.sh
   # network:
   #   version: 2
   #   renderer: NetworkManager
@@ -33,6 +31,7 @@ autoinstall:
   # - git
   # - sshpass
   late-commands:
+    - curtin in-target --target=/target -- /tmp/yt6801-linux-driver-1.0.29/yt_nic_install.sh
     - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' >> /target/etc/sudoers
     # - curtin in-target --target=/target -- apt-get update
     # - curtin in-target --target=/target -- apt-get install -y python3-pip
