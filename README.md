@@ -206,3 +206,5 @@ less /var/log/cloud-init.log
 ## Day 3
 
 Set static IPs with ASUS mobile app via DHCP
+
+drivers https://www.touslesdrivers.com/index.php?v_page=23&v_code=79082&v_langue=en
