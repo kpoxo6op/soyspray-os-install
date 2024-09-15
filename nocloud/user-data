@@ -5,18 +5,19 @@ autoinstall:
     hostname: k8s-node-1
     username: ubuntu
     # mkpasswd -m sha-512 123
-    password: '$6$woKNTIGG4EIjt5vX$Ty3PkCtU6.jU286UCGdQNPA7OHPf97BRIFwhzeKEF5qcTrjLgqXxFKa2rSoBm5TzS9Cih.RMgTYOT505vUBGj.'
+    password: "$6$woKNTIGG4EIjt5vX$Ty3PkCtU6.jU286UCGdQNPA7OHPf97BRIFwhzeKEF5qcTrjLgqXxFKa2rSoBm5TzS9Cih.RMgTYOT505vUBGj."
   ssh:
     install-server: true
     allow-pw: yes
     authorized-keys:
-      - 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCr7WZBwguXRF8o+mVtM7iHyzR14nU8bFIQcScSFphYkNEyK3ThkauVEc3zZzGi6F1ZaBS1pDDIBIPO7nASB444jkJAw9rKbkKZYXdqB2B9vIAFCRT8/tnR+ckKtX57C2DlE9924+e6PiOyeZXNMBmqfb35PjszISOKWiZPw42k1yCAcaNnMSZTWp2/7h8yOMFogwhL7xjEGHizBwSqICA0upT39S9PQUiGhRvhjYUqejOUd5zuAd2+wkRgq4kU43alYZjCUPqBJOt4VUQaBi0Ex3vJaijmkYAJ+THU1TvkLZ4dCu4+UvFoKxODLLpFZMPXHJovnn2K2RYuibcMK4KB boris@borex-pc'
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCr7WZBwguXRF8o+mVtM7iHyzR14nU8bFIQcScSFphYkNEyK3ThkauVEc3zZzGi6F1ZaBS1pDDIBIPO7nASB444jkJAw9rKbkKZYXdqB2B9vIAFCRT8/tnR+ckKtX57C2DlE9924+e6PiOyeZXNMBmqfb35PjszISOKWiZPw42k1yCAcaNnMSZTWp2/7h8yOMFogwhL7xjEGHizBwSqICA0upT39S9PQUiGhRvhjYUqejOUd5zuAd2+wkRgq4kU43alYZjCUPqBJOt4VUQaBi0Ex3vJaijmkYAJ+THU1TvkLZ4dCu4+UvFoKxODLLpFZMPXHJovnn2K2RYuibcMK4KB boris@borex-pc"
   early-commands:
-    - "mkdir -p /mnt/yt6801-driver"
-    - "cp -r /cdrom/yt6801-linux-driver-1.0.29/src/* /mnt/yt6801-driver/"
-    - "curtin in-target --target=/target -- apt update || true"
-    - "curtin in-target --target=/target -- apt-get install -y build-essential linux-headers-$(uname -r) ethtool || true"
-    - "curtin in-target --target=/target -- /bin/bash -c 'cd /mnt/yt6801-driver && ./yt_nic_install.sh'"
+    - mkdir -p /target/tmp
+    - sleep 10
+    - cp -r /cdrom/yt6801-linux-driver-1.0.29 /target/tmp
+    - sleep 10
+  late-comamnds:
+    - curtin in-target -- /tmp/yt6801-linux-driver-1.0.29/yt_nic_install.sh
   # network:
   #   version: 2
   #   renderer: NetworkManager
@@ -27,10 +28,10 @@ autoinstall:
   #       dhcp4: true
   #       dhcp-identifier: mac
   # packages:
-    # - python3
-    # - python3-pip
-    # - git
-    # - sshpass
+  # - python3
+  # - python3-pip
+  # - git
+  # - sshpass
   late-commands:
     - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' >> /target/etc/sudoers
     # - curtin in-target --target=/target -- apt-get update
