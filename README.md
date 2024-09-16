@@ -208,3 +208,31 @@ less /var/log/cloud-init.log
 Set static IPs with ASUS mobile app via DHCP
 
 drivers https://www.touslesdrivers.com/index.php?v_page=23&v_code=79082&v_langue=en
+
+## Day 4
+
+donwload make and its dependencies on online computer
+
+```sh
+mkdir -p ~/make_packages
+cd ~/make_packages
+sudo apt-get update
+apt-get download make
+sudo apt-get install apt-rdepends y
+sudo apt-get install apt-rdepends -y
+apt-rdepends make | grep -v "^ " | xargs apt-get download
+```
+
+insert USB stick in offline computer
+
+```sh
+sudo mkdir /media/usb
+# not the device #, mount it
+lsblk
+sudo mount /dev/sdb1 /media/usb
+cp -r make /tmp
+cp -r /media/usb/make /tmp/make
+cd /tmp/make
+sudo dpkg -i *.deb
+make -v
+```
