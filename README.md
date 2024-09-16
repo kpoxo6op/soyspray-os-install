@@ -238,13 +238,25 @@ sudo apt-get install -y apt-rdepends
 apt-rdepends build-essential | grep -v "^ " | grep -v "^libc-dev$" | xargs apt-get download
 ```
 
+```sh
+mkdir -p ~/driver_build_packages
+cd ~/driver_build_packages
+sudo apt-get update
+sudo apt-get install -y apt-rdepends
+apt-rdepends build-essential gcc-13 make \
+    | grep -v "^ " \
+    | grep -v "(virtual)" \
+    | grep -v "^libc-dev$" \
+    | sort -u > package_list.txt
+cat package_list.txt | xargs apt-get download
+```
+
 Download Kernel Headers for offline computer
 
 ```sh
+cd ~/driver_build_packages
 apt-get download linux-headers-6.8.0-41-generic
 ```
-
-
 
 
 insert USB stick in offline computer (draft commands)
@@ -260,3 +272,5 @@ sudo dpkg -i *.deb
 # ./yt_nic_install.sh
 make -v
 ```
+
+try to automate it with autoinstall
