@@ -30,8 +30,13 @@ autoinstall:
     - mkdir -p /target/tmp/yt6801-linux-driver-1.0.29
     - cp -r /cdrom/yt6801-linux-driver-1.0.29 /target/tmp/
     - cp -r /cdrom/driver-build-packages/*.deb /target/tmp/
-    - curtin in-target --target=/target -- dpkg -i /tmp/*.deb
-    - curtin in-target --target=/target -- bash /tmp/yt6801-linux-driver-1.0.29/yt_nic_install.sh
+    # - curtin in-target --target=/target -- /bin/dpkg -i /target/tmp/*.deb
+    # - curtin in-target --target=/target -- /bin/bash /target/tmp/yt6801-linux-driver-1.0.29/yt_nic_install.sh
+    # - sleep 60
+  # https://medium.com/@Phoenixforge/diving-deeper-with-ubuntu-autoinstall-b15e5bdffbb5
+  user-data:
+    runcmd:
+      - ls -l /tmp
   locale: en_NZ.UTF-8
   keyboard:
     layout: us
