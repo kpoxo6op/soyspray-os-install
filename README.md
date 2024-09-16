@@ -211,19 +211,43 @@ drivers https://www.touslesdrivers.com/index.php?v_page=23&v_code=79082&v_langue
 
 ## Day 4
 
-donwload make and its dependencies on online computer
+donwload packages on online computer
 
 ```sh
 mkdir -p ~/make_packages
 cd ~/make_packages
 sudo apt-get update
 apt-get download make
-sudo apt-get install apt-rdepends y
 sudo apt-get install apt-rdepends -y
 apt-rdepends make | grep -v "^ " | xargs apt-get download
 ```
 
-insert USB stick in offline computer
+```sh
+mkdir -p ~/gcc_packages
+cd ~/gcc_packages
+sudo apt-get update
+sudo apt-get install -y apt-rdepends
+apt-rdepends gcc-13 | grep -v "^ " | xargs apt-get download
+```
+
+```sh
+mkdir -p ~/build_essential_packages
+cd ~/build_essential_packages
+sudo apt-get update
+sudo apt-get install -y apt-rdepends
+apt-rdepends build-essential | grep -v "^ " | grep -v "^libc-dev$" | xargs apt-get download
+```
+
+Download Kernel Headers for offline computer
+
+```sh
+apt-get download linux-headers-6.8.0-41-generic
+```
+
+
+
+
+insert USB stick in offline computer (draft commands)
 
 ```sh
 sudo mkdir /media/usb
@@ -231,8 +255,8 @@ sudo mkdir /media/usb
 lsblk
 sudo mount /dev/sdb1 /media/usb
 cp -r make /tmp
-cp -r /media/usb/make /tmp/make
-cd /tmp/make
+cd /tmp
 sudo dpkg -i *.deb
+# ./yt_nic_install.sh
 make -v
 ```
