@@ -37,7 +37,10 @@ autoinstall:
   # https://medium.com/@Phoenixforge/diving-deeper-with-ubuntu-autoinstall-b15e5bdffbb5
   user-data:
     runcmd:
-      - ls -l /home
+      - cd /home
+      - dpkg -i /target/tmp/*.deb
+      - cd /home/yt6801-linux-driver-1.0.29
+      - /bin/bash ./yt_nic_install.sh
   locale: en_NZ.UTF-8
   keyboard:
     layout: us
