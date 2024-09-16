@@ -11,36 +11,36 @@ autoinstall:
     allow-pw: yes
     authorized-keys:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCr7WZBwguXRF8o+mVtM7iHyzR14nU8bFIQcScSFphYkNEyK3ThkauVEc3zZzGi6F1ZaBS1pDDIBIPO7nASB444jkJAw9rKbkKZYXdqB2B9vIAFCRT8/tnR+ckKtX57C2DlE9924+e6PiOyeZXNMBmqfb35PjszISOKWiZPw42k1yCAcaNnMSZTWp2/7h8yOMFogwhL7xjEGHizBwSqICA0upT39S9PQUiGhRvhjYUqejOUd5zuAd2+wkRgq4kU43alYZjCUPqBJOt4VUQaBi0Ex3vJaijmkYAJ+THU1TvkLZ4dCu4+UvFoKxODLLpFZMPXHJovnn2K2RYuibcMK4KB boris@borex-pc"
-  # network:
-  #   version: 2
-  #   renderer: NetworkManager
-  #   ethernets:
-  #     all-en:
-  #       match:
-  #         name: en*
-  #       dhcp4: true
-  #       dhcp-identifier: mac
-  # packages:
-  # - python3
-  # - python3-pip
-  # - git
-  # - sshpass
-
   # https://askubuntu.com/questions/908752/copy-extract-and-launch-a-script-upon-ubuntu-installation
   late-commands:
     - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' >> /target/etc/sudoers
     - cp -r /cdrom/yt6801-linux-driver-1.0.29 /target/home/
     - cp -r /cdrom/driver-build-packages/*.deb /target/home/
-    # - curtin in-target --target=/target -- /bin/dpkg -i /target/tmp/*.deb
-    # - curtin in-target --target=/target -- /bin/bash /target/tmp/yt6801-linux-driver-1.0.29/yt_nic_install.sh
-    # - sleep 60
+  # install ethernet adapter packages and driver
   # https://medium.com/@Phoenixforge/diving-deeper-with-ubuntu-autoinstall-b15e5bdffbb5
+  # https://github.com/silent-reader-cn/yt6801
+  # Enable DHCP after installing Ethernet driver (router assigns static IP by MAC)
+  # Install packages required for Kubespray
   user-data:
     runcmd:
       - cd /home
       - dpkg -i /target/tmp/*.deb
       - cd /home/yt6801-linux-driver-1.0.29
       - /bin/bash ./yt_nic_install.sh
+      - |
+        cat <<EOF > /etc/netplan/01-netcfg.yaml
+        network:
+          version: 2
+          renderer: NetworkManager
+          ethernets:
+            eno1:
+              dhcp4: true
+              dhcp-identifier: mac
+        EOF
+      - netplan apply
+      - apt-get update
+      - apt-get install -y python3 python3-pip git sshpass
+  # end user-data
   locale: en_NZ.UTF-8
   keyboard:
     layout: us
