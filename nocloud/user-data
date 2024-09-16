@@ -11,11 +11,6 @@ autoinstall:
     allow-pw: yes
     authorized-keys:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCr7WZBwguXRF8o+mVtM7iHyzR14nU8bFIQcScSFphYkNEyK3ThkauVEc3zZzGi6F1ZaBS1pDDIBIPO7nASB444jkJAw9rKbkKZYXdqB2B9vIAFCRT8/tnR+ckKtX57C2DlE9924+e6PiOyeZXNMBmqfb35PjszISOKWiZPw42k1yCAcaNnMSZTWp2/7h8yOMFogwhL7xjEGHizBwSqICA0upT39S9PQUiGhRvhjYUqejOUd5zuAd2+wkRgq4kU43alYZjCUPqBJOt4VUQaBi0Ex3vJaijmkYAJ+THU1TvkLZ4dCu4+UvFoKxODLLpFZMPXHJovnn2K2RYuibcMK4KB boris@borex-pc"
-  early-commands:
-    - mkdir -p /target/tmp
-    - sleep 10
-    - cp -r /cdrom/yt6801-linux-driver-1.0.29 /target/tmp
-    - sleep 10
   # network:
   #   version: 2
   #   renderer: NetworkManager
@@ -31,10 +26,12 @@ autoinstall:
   # - git
   # - sshpass
   late-commands:
-    - curtin in-target --target=/target -- /tmp/yt6801-linux-driver-1.0.29/yt_nic_install.sh
     - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' >> /target/etc/sudoers
-    # - curtin in-target --target=/target -- apt-get update
-    # - curtin in-target --target=/target -- apt-get install -y python3-pip
+    - mkdir -p /target/tmp/yt6801-linux-driver-1.0.29
+    - cp -r /cdrom/yt6801-linux-driver-1.0.29 /target/tmp/
+    - cp -r /cdrom/driver-build-packages/*.deb /target/tmp/
+    - curtin in-target --target=/target -- dpkg -i /tmp/*.deb
+    - curtin in-target --target=/target -- bash /tmp/yt6801-linux-driver-1.0.29/yt_nic_install.sh
   locale: en_NZ.UTF-8
   keyboard:
     layout: us
