@@ -25,6 +25,8 @@ autoinstall:
   # - python3-pip
   # - git
   # - sshpass
+
+  # https://askubuntu.com/questions/908752/copy-extract-and-launch-a-script-upon-ubuntu-installation
   late-commands:
     - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' >> /target/etc/sudoers
     - cp -r /cdrom/yt6801-linux-driver-1.0.29 /target/home/
