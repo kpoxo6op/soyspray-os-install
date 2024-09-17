@@ -1,4 +1,4 @@
-PS C:\Users\borex\Downloads\yt6801-linux-driver-1.0.29> tree F:\ /A /F
+PS f:\> tree F:\ /A /F
 Folder PATH listing for volume UBUNTU-SERV
 Volume serial number is 6267-CF09
 F:\
@@ -1229,6 +1229,171 @@ F:\
 |                   nvidia-utils-535-server_535.183.01-0ubuntu0.24.04.1_amd64.deb
 |                   xserver-xorg-video-nvidia-535-server_535.183.01-0ubuntu0.24.04.1_amd64.deb
 |
-\---nocloud
-        meta-data
-        user-data
++---nocloud
+|       meta-data
+|       user-data
+|
++---yt6801-linux-driver-1.0.29
+|   |   Makefile
+|   |   README
+|   |   yt_nic_install.sh
+|   |
+|   \---src
+|           dkms.conf
+|           fuxi-dbg.h
+|           fuxi-efuse.c
+|           fuxi-efuse.h
+|           fuxi-errno.h
+|           fuxi-gmac-common.c
+|           fuxi-gmac-desc.c
+|           fuxi-gmac-ethtool.c
+|           fuxi-gmac-hw.c
+|           fuxi-gmac-ioctl.c
+|           fuxi-gmac-net.c
+|           fuxi-gmac-pci.c
+|           fuxi-gmac-phy.c
+|           fuxi-gmac-reg.h
+|           fuxi-gmac.h
+|           fuxi-os.h
+|           Makefile
+|           Notice.txt
+|
++---packages
+|       libstdc++-13-dev_13.2.0-23ubuntu4_amd64.deb
+|       linux-headers-6.8.0-41-generic_6.8.0-41.41_amd64.deb
+|       binutils_2.42-4ubuntu2_amd64.deb
+|       binutils-common_2.42-4ubuntu2_amd64.deb
+|       binutils-x86-64-linux-gnu_2.42-4ubuntu2_amd64.deb
+|       build-essential_12.10ubuntu1_amd64.deb
+|       bzip2_1.0.8-5.1build0.1_amd64.deb
+|       cpp_4%3a13.2.0-7ubuntu1_amd64.deb
+|       cpp-13_13.2.0-23ubuntu4_amd64.deb
+|       cpp-13-x86-64-linux-gnu_13.2.0-23ubuntu4_amd64.deb
+|       cpp-x86-64-linux-gnu_4%3a13.2.0-7ubuntu1_amd64.deb
+|       dpkg_1.22.6ubuntu6.1_amd64.deb
+|       dpkg-dev_1.22.6ubuntu6.1_all.deb
+|       g++_4%3a13.2.0-7ubuntu1_amd64.deb
+|       g++-13_13.2.0-23ubuntu4_amd64.deb
+|       g++-13-x86-64-linux-gnu_13.2.0-23ubuntu4_amd64.deb
+|       g++-x86-64-linux-gnu_4%3a13.2.0-7ubuntu1_amd64.deb
+|       gcc_4%3a13.2.0-7ubuntu1_amd64.deb
+|       gcc-13_13.2.0-23ubuntu4_amd64.deb
+|       gcc-13-base_13.2.0-23ubuntu4_amd64.deb
+|       gcc-13-x86-64-linux-gnu_13.2.0-23ubuntu4_amd64.deb
+|       gcc-14-base_14-20240412-0ubuntu1_amd64.deb
+|       gcc-x86-64-linux-gnu_4%3a13.2.0-7ubuntu1_amd64.deb
+|       libacl1_2.3.2-1build1_amd64.deb
+|       libasan8_14-20240412-0ubuntu1_amd64.deb
+|       libatomic1_14-20240412-0ubuntu1_amd64.deb
+|       libbinutils_2.42-4ubuntu2_amd64.deb
+|       libbz2-1.0_1.0.8-5.1build0.1_amd64.deb
+|       libc6_2.39-0ubuntu8.3_amd64.deb
+|       libc6-dev_2.39-0ubuntu8.3_amd64.deb
+|       libcc1-0_14-20240412-0ubuntu1_amd64.deb
+|       libc-dev-bin_2.39-0ubuntu8.3_amd64.deb
+|       libcrypt1_1%3a4.4.36-4build1_amd64.deb
+|       libcrypt-dev_1%3a4.4.36-4build1_amd64.deb
+|       libctf0_2.42-4ubuntu2_amd64.deb
+|       libctf-nobfd0_2.42-4ubuntu2_amd64.deb
+|       libdpkg-perl_1.22.6ubuntu6.1_all.deb
+|       libgcc-13-dev_13.2.0-23ubuntu4_amd64.deb
+|       libgcc-s1_14-20240412-0ubuntu1_amd64.deb
+|       libgmp10_2%3a6.3.0+dfsg-2ubuntu6_amd64.deb
+|       libgomp1_14-20240412-0ubuntu1_amd64.deb
+|       libgprofng0_2.42-4ubuntu2_amd64.deb
+|       libhwasan0_14-20240412-0ubuntu1_amd64.deb
+|       libisl23_0.26-3build1_amd64.deb
+|       libitm1_14-20240412-0ubuntu1_amd64.deb
+|       libjansson4_2.14-2build2_amd64.deb
+|       liblsan0_14-20240412-0ubuntu1_amd64.deb
+|       liblzma5_5.6.1+really5.4.5-1build0.1_amd64.deb
+|       libmpc3_1.3.1-1build1_amd64.deb
+|       libmd0_1.1.0-2build1_amd64.deb
+|       libmpfr6_4.2.1-1build1_amd64.deb
+|       libpcre2-8-0_10.42-4ubuntu2_amd64.deb
+|       libquadmath0_14-20240412-0ubuntu1_amd64.deb
+|       libsframe1_2.42-4ubuntu2_amd64.deb
+|       libselinux1_3.5-2ubuntu2_amd64.deb
+|       libstdc++6_14-20240412-0ubuntu1_amd64.deb
+|       libtsan2_14-20240412-0ubuntu1_amd64.deb
+|       libubsan1_14-20240412-0ubuntu1_amd64.deb
+|       libzstd1_1.5.5+dfsg2-2build1.1_amd64.deb
+|       linux-libc-dev_6.8.0-44.44_amd64.deb
+|       zlib1g_1%3a1.3.dfsg-3.1ubuntu2.1_amd64.deb
+|       lto-disabled-list_47_all.deb
+|       make_4.3-4.1build2_amd64.deb
+|       patch_2.7.6-7build3_amd64.deb
+|       perl_5.38.2-3.2build2_amd64.deb
+|       rpcsvc-proto_1.4.2-0ubuntu7_amd64.deb
+|       tar_1.35+dfsg-3build1_amd64.deb
+|       xz-utils_5.6.1+really5.4.5-1build0.1_amd64.deb
+|
+\---driver-build-packages
+        binutils-common_2.42-4ubuntu2_amd64.deb
+        binutils-x86-64-linux-gnu_2.42-4ubuntu2_amd64.deb
+        binutils_2.42-4ubuntu2_amd64.deb
+        build-essential_12.10ubuntu1_amd64.deb
+        bzip2_1.0.8-5.1build0.1_amd64.deb
+        cpp-13-x86-64-linux-gnu_13.2.0-23ubuntu4_amd64.deb
+        cpp-13_13.2.0-23ubuntu4_amd64.deb
+        cpp-x86-64-linux-gnu_4%3a13.2.0-7ubuntu1_amd64.deb
+        cpp_4%3a13.2.0-7ubuntu1_amd64.deb
+        dpkg-dev_1.22.6ubuntu6.1_all.deb
+        dpkg_1.22.6ubuntu6.1_amd64.deb
+        g++-13-x86-64-linux-gnu_13.2.0-23ubuntu4_amd64.deb
+        g++-13_13.2.0-23ubuntu4_amd64.deb
+        g++-x86-64-linux-gnu_4%3a13.2.0-7ubuntu1_amd64.deb
+        g++_4%3a13.2.0-7ubuntu1_amd64.deb
+        gcc-13-base_13.2.0-23ubuntu4_amd64.deb
+        gcc-13-x86-64-linux-gnu_13.2.0-23ubuntu4_amd64.deb
+        gcc-13_13.2.0-23ubuntu4_amd64.deb
+        gcc-14-base_14-20240412-0ubuntu1_amd64.deb
+        gcc-x86-64-linux-gnu_4%3a13.2.0-7ubuntu1_amd64.deb
+        gcc_4%3a13.2.0-7ubuntu1_amd64.deb
+        libacl1_2.3.2-1build1_amd64.deb
+        libasan8_14-20240412-0ubuntu1_amd64.deb
+        libatomic1_14-20240412-0ubuntu1_amd64.deb
+        libbinutils_2.42-4ubuntu2_amd64.deb
+        libbz2-1.0_1.0.8-5.1build0.1_amd64.deb
+        libc-dev-bin_2.39-0ubuntu8.3_amd64.deb
+        libc6-dev_2.39-0ubuntu8.3_amd64.deb
+        libc6_2.39-0ubuntu8.3_amd64.deb
+        libcc1-0_14-20240412-0ubuntu1_amd64.deb
+        libcrypt-dev_1%3a4.4.36-4build1_amd64.deb
+        libcrypt1_1%3a4.4.36-4build1_amd64.deb
+        libctf-nobfd0_2.42-4ubuntu2_amd64.deb
+        libctf0_2.42-4ubuntu2_amd64.deb
+        libdpkg-perl_1.22.6ubuntu6.1_all.deb
+        libgcc-13-dev_13.2.0-23ubuntu4_amd64.deb
+        libgcc-s1_14-20240412-0ubuntu1_amd64.deb
+        libgmp10_2%3a6.3.0+dfsg-2ubuntu6_amd64.deb
+        libgomp1_14-20240412-0ubuntu1_amd64.deb
+        libgprofng0_2.42-4ubuntu2_amd64.deb
+        libhwasan0_14-20240412-0ubuntu1_amd64.deb
+        libisl23_0.26-3build1_amd64.deb
+        libitm1_14-20240412-0ubuntu1_amd64.deb
+        libjansson4_2.14-2build2_amd64.deb
+        liblsan0_14-20240412-0ubuntu1_amd64.deb
+        liblzma5_5.6.1+really5.4.5-1build0.1_amd64.deb
+        libmd0_1.1.0-2build1_amd64.deb
+        libmpc3_1.3.1-1build1_amd64.deb
+        libmpfr6_4.2.1-1build1_amd64.deb
+        libpcre2-8-0_10.42-4ubuntu2_amd64.deb
+        libquadmath0_14-20240412-0ubuntu1_amd64.deb
+        libselinux1_3.5-2ubuntu2_amd64.deb
+        libsframe1_2.42-4ubuntu2_amd64.deb
+        libstdc++-13-dev_13.2.0-23ubuntu4_amd64.deb
+        libstdc++6_14-20240412-0ubuntu1_amd64.deb
+        libtsan2_14-20240412-0ubuntu1_amd64.deb
+        libubsan1_14-20240412-0ubuntu1_amd64.deb
+        libzstd1_1.5.5+dfsg2-2build1.1_amd64.deb
+        linux-libc-dev_6.8.0-44.44_amd64.deb
+        lto-disabled-list_47_all.deb
+        make_4.3-4.1build2_amd64.deb
+        package_list.txt
+        patch_2.7.6-7build3_amd64.deb
+        perl_5.38.2-3.2build2_amd64.deb
+        rpcsvc-proto_1.4.2-0ubuntu7_amd64.deb
+        tar_1.35+dfsg-3build1_amd64.deb
+        xz-utils_5.6.1+really5.4.5-1build0.1_amd64.deb
+        zlib1g_1%3a1.3.dfsg-3.1ubuntu2.1_amd64.deb
