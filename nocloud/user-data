@@ -46,10 +46,14 @@ autoinstall:
       - apt-get upgrade -y
       - apt-get install -y python3 python3-pip git sshpass
       - |
-        IP_ADDRESS=$(hostname -I | awk '{print $1}')
-        NEW_HOSTNAME="node-${IP_ADDRESS//./-}"
-        sed -i "s/127.0.1.1.*/127.0.1.1 $NEW_HOSTNAME/" /etc/hosts
+        /bin/bash -c "
+        IP_ADDRESS=\$(hostname -I | awk '{print \$1}')
+        NEW_HOSTNAME=node-\${IP_ADDRESS//./-}
+        echo 'Setting hostname to \$NEW_HOSTNAME'
+        hostnamectl set-hostname \"\$NEW_HOSTNAME\"
+        sed -i 's/127.0.1.1.*/127.0.1.1 \$NEW_HOSTNAME/' /etc/hosts
         systemctl restart systemd-hostnamed
+        "
   # end user-data
   locale: en_NZ.UTF-8
   keyboard:
