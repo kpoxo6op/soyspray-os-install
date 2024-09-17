@@ -24,14 +24,14 @@ autoinstall:
   user-data:
     runcmd:
       - cd /home
-      - dpkg -i /target/tmp/*.deb
+      - dpkg -i /home/*.deb
       - cd /home/yt6801-linux-driver-1.0.29
       - /bin/bash ./yt_nic_install.sh
       - |
         cat <<EOF > /etc/netplan/01-netcfg.yaml
         network:
           version: 2
-          renderer: NetworkManager
+          renderer: networkd
           ethernets:
             eno1:
               dhcp4: true
@@ -52,4 +52,4 @@ autoinstall:
         size: 1G to 500G
       preserve: false
       swap: false
-  shutdown: reboot
+  # shutdown: reboot
