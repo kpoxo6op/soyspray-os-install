@@ -12,10 +12,17 @@ autoinstall:
     authorized-keys:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCr7WZBwguXRF8o+mVtM7iHyzR14nU8bFIQcScSFphYkNEyK3ThkauVEc3zZzGi6F1ZaBS1pDDIBIPO7nASB444jkJAw9rKbkKZYXdqB2B9vIAFCRT8/tnR+ckKtX57C2DlE9924+e6PiOyeZXNMBmqfb35PjszISOKWiZPw42k1yCAcaNnMSZTWp2/7h8yOMFogwhL7xjEGHizBwSqICA0upT39S9PQUiGhRvhjYUqejOUd5zuAd2+wkRgq4kU43alYZjCUPqBJOt4VUQaBi0Ex3vJaijmkYAJ+THU1TvkLZ4dCu4+UvFoKxODLLpFZMPXHJovnn2K2RYuibcMK4KB boris@borex-pc"
   # https://askubuntu.com/questions/908752/copy-extract-and-launch-a-script-upon-ubuntu-installation
+  # disable suspend on VGA disconnect
   late-commands:
     - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' >> /target/etc/sudoers
     - cp -r /cdrom/yt6801-linux-driver-1.0.29 /target/home/
     - cp -r /cdrom/driver-build-packages/*.deb /target/home/
+    - |
+      echo 'HandleLidSwitchDocked=ignore' >> /target/etc/systemd/logind.conf
+      echo 'HandleLidSwitch=ignore' >> /target/etc/systemd/logind.conf
+      chroot /target systemctl restart systemd-logind
+  # end late-commands
+
   # install ethernet adapter packages and driver
   # https://medium.com/@Phoenixforge/diving-deeper-with-ubuntu-autoinstall-b15e5bdffbb5
   # https://github.com/silent-reader-cn/yt6801
