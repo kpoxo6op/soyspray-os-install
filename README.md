@@ -274,3 +274,36 @@ make -v
 ```
 
 try to automate it with autoinstall
+
+## Day 4
+
+installer WSL2 prep <https://youtu.be/zJoK8MMI23Q?si=bzzq4EwIPcg5FR1K>
+
+```sh
+sudo apt-get install python3-pip python3.12-venv -y
+
+cd ~/code
+git clone https://github.com/kubernetes-sigs/kubespray.git && cd kubespray
+pip3 install -r requirements.txt --break-system-packages --ignore-installed
+pip3 install ruamel.yaml --break-system-packages
+```
+
+<https://github.com/kubernetes-sigs/kubespray/blob/master/docs/ansible/ansible.md#installing-ansible>
+
+```sh
+cp -rfp inventory/sample inventory/soy-cluster
+pip3 install ruamel.yaml
+declare -a IPS=(node-0,192.168.1.100 node-1,192.168.1.101 node-2,192.168.1.102)
+CONFIG_FILE=inventory/soy-cluster/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
+cat inventory/soy-cluster/hosts.yaml
+ansible-playbook -i inventory/soy-cluster/hosts.yaml --become --become-user=root --user ubuntu cluster.yml
+```
+
+Check the run
+
+```sh
+cd ~
+ssh ubuntu@192.168.1.100 -i pk.pem
+sudo kubectl config get-contexts
+sudo cat /root/.kube/config
+```
