@@ -27,7 +27,6 @@ autoinstall:
   # https://medium.com/@Phoenixforge/diving-deeper-with-ubuntu-autoinstall-b15e5bdffbb5
   # https://github.com/silent-reader-cn/yt6801
   # Enable DHCP after installing Ethernet driver (router assigns static IP by MAC)
-  # Install packages required for Kubespray
   # Set hostname
   user-data:
     runcmd:
@@ -50,7 +49,9 @@ autoinstall:
         # Wait for network to be up
         until ping -c1 google.com &>/dev/null; do sleep 1; done
       - apt-get update
-      - apt-get upgrade -y
+      # Prevent kernel upgrade to avoid recompiling Ethernet drivers
+      # - apt-get upgrade -y
+      - apt-mark hold linux-image-generic linux-headers-generic
       - |
         /bin/bash -c "
         IP_ADDRESS=\$(hostname -I | awk '{print \$1}')

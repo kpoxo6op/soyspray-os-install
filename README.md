@@ -239,8 +239,8 @@ apt-rdepends build-essential | grep -v "^ " | grep -v "^libc-dev$" | xargs apt-g
 ```
 
 ```sh
-mkdir -p ~/driver_build_packages
-cd ~/driver_build_packages
+mkdir -p ~/driver-build-packages
+cd ~/driver-build-packages
 sudo apt-get update
 sudo apt-get install -y apt-rdepends
 apt-rdepends build-essential gcc-13 make \
@@ -254,7 +254,7 @@ cat package_list.txt | xargs apt-get download
 Download Kernel Headers for offline computer
 
 ```sh
-cd ~/driver_build_packages
+cd ~/driver-build-packages
 apt-get download linux-headers-6.8.0-41-generic
 ```
 
