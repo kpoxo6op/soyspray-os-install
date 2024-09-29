@@ -14,8 +14,11 @@ autoinstall:
   # begin late-commands
   # https://askubuntu.com/questions/908752/copy-extract-and-launch-a-script-upon-ubuntu-installation
   # disable suspend on VGA disconnect
+  # allow root login for recovery
   late-commands:
     - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' >> /target/etc/sudoers
+    - echo "PermitRootLogin yes" >> /target/etc/ssh/sshd_config
+    - echo "PasswordAuthentication yes" >> /target/etc/ssh/sshd_config
     - cp -r /cdrom/yt6801-linux-driver-1.0.29 /target/home/
     - cp -r /cdrom/driver-build-packages-24.04/*.deb /target/home/
     - |
@@ -31,6 +34,16 @@ autoinstall:
   # Prevent kernel upgrade to avoid recompiling Ethernet drivers
   # Set hostname
   user-data:
+    chpasswd:
+      expire: false
+    ssh_pwauth: true
+    users:
+      - name: root
+        lock_passwd: false
+        # mkpasswd -m sha-512 123
+        passwd: "$6$woKNTIGG4EIjt5vX$Ty3PkCtU6.jU286UCGdQNPA7OHPf97BRIFwhzeKEF5qcTrjLgqXxFKa2rSoBm5TzS9Cih.RMgTYOT505vUBGj."
+        shell: /bin/bash
+        groups: sudo
     runcmd:
       - dpkg -i /home/*.deb
       - cd /home/yt6801-linux-driver-1.0.29
