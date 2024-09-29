@@ -27,7 +27,7 @@ Download Ubuntu Server
 Invoke-WebRequest -Uri "https://mirror.2degrees.nz/ubuntu-releases/24.04.1/ubuntu-24.04.1-live-server-amd64.iso" -OutFile "C:\Users\borex\Downloads\ubuntu-24.04.1-live-server-amd64.iso"
 ```
 
-donwload packages on online computer
+donwload packages on WSL2 Ubuntu 24.04 (same as offline target)
 
 ```sh
 mkdir driver-build-packages
@@ -39,7 +39,6 @@ apt-rdepends build-essential gcc-13 make \
   | grep -v "^ " \
   | grep -v "(virtual)" \
   | grep -v "^libc-dev$" \
-  | grep -v "^debconf-2.0$" \
   | sort -u > package_list.txt
 cat package_list.txt | xargs apt-get download
 ```
