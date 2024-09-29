@@ -51,6 +51,7 @@ sudo add-apt-repository ppa:canonical-kernel-team/ppa
 sudo apt update
 # matching `apt search linux-headers` not found, try closest ones
 # apt-get download linux-headers-6.8.0-41-generic
+# salvage linux-headers-6.8.0-41-generic from one of the miniPCs if 6.8.0-40 does not work
 apt-get download linux-headers-6.8.0-40-generic
 ```
 
