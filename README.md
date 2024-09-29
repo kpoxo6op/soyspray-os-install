@@ -46,18 +46,13 @@ cat package_list.txt | xargs apt-get download
 Download *MATCHING* Kernel Headers for offline computer
 
 ```sh
-sudo add-apt-repository ppa:canonical-kernel-team/ppa
-sudo apt update
-# matching `apt search linux-headers` not found, try closest ones
-# apt-get download linux-headers-6.8.0-41-generic
-# salvage linux-headers-6.8.0-41-generic from one of the miniPCs if 6.8.0-40 does not work
-apt-get download linux-headers-6.8.0-40-generic
+apt-get download linux-headers-6.8.0-41-generic
 ```
 
 ## Create Autoinstall USBs
 
 ```sh
 # copy autoinstll.yaml to USB root
-# copy driver-build-packages folder to USB root
-# extract yt6801-linux-driver-1.0.29.zip to USB root as folder yt6801-linux-driver-1.0.29
+# copy driver-build-packages-24.04 folder to USB root
+# copy yt6801-linux-driver-1.0.29 to USB root
 ```
