@@ -11,31 +11,27 @@ autoinstall:
     allow-pw: yes
     authorized-keys:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCr7WZBwguXRF8o+mVtM7iHyzR14nU8bFIQcScSFphYkNEyK3ThkauVEc3zZzGi6F1ZaBS1pDDIBIPO7nASB444jkJAw9rKbkKZYXdqB2B9vIAFCRT8/tnR+ckKtX57C2DlE9924+e6PiOyeZXNMBmqfb35PjszISOKWiZPw42k1yCAcaNnMSZTWp2/7h8yOMFogwhL7xjEGHizBwSqICA0upT39S9PQUiGhRvhjYUqejOUd5zuAd2+wkRgq4kU43alYZjCUPqBJOt4VUQaBi0Ex3vJaijmkYAJ+THU1TvkLZ4dCu4+UvFoKxODLLpFZMPXHJovnn2K2RYuibcMK4KB boris@borex-pc"
-
   # begin late-commands
-  #
   # https://askubuntu.com/questions/908752/copy-extract-and-launch-a-script-upon-ubuntu-installation
   # disable suspend on VGA disconnect
   late-commands:
     - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' >> /target/etc/sudoers
     - cp -r /cdrom/yt6801-linux-driver-1.0.29 /target/home/
-    - cp -r /cdrom/driver-build-packages/*.deb /target/home/
+    - cp -r /cdrom/driver-build-packages-24.04/*.deb /target/home/
     - |
       echo 'HandleLidSwitchDocked=ignore' >> /target/etc/systemd/logind.conf
       echo 'HandleLidSwitch=ignore' >> /target/etc/systemd/logind.conf
       chroot /target systemctl restart systemd-logind
   # end late-commands
-
   # begin user-data
-  #
   # install ethernet adapter packages and driver
   # https://medium.com/@Phoenixforge/diving-deeper-with-ubuntu-autoinstall-b15e5bdffbb5
   # https://github.com/silent-reader-cn/yt6801
   # Enable DHCP after installing Ethernet driver (router assigns static IP by MAC)
+  # Prevent kernel upgrade to avoid recompiling Ethernet drivers
   # Set hostname
   user-data:
     runcmd:
-      - cd /home
       - dpkg -i /home/*.deb
       - cd /home/yt6801-linux-driver-1.0.29
       - /bin/bash ./yt_nic_install.sh
@@ -50,13 +46,10 @@ autoinstall:
               dhcp-identifier: mac
         EOF
       - netplan apply
-      - |
-        # Wait for network to be up
-        until ping -c1 google.com &>/dev/null; do sleep 1; done
+      - until ping -c1 google.com &>/dev/null; do sleep 1; done
       - apt-get update
-      # Prevent kernel upgrade to avoid recompiling Ethernet drivers
-      # - apt-get upgrade -y
-      - apt-mark hold linux-image-generic linux-headers-generic
+      - apt-mark hold linux-image-$(uname -r) linux-headers-$(uname -r) linux-image-generic linux-headers-generic
+      - apt-get upgrade -y
       - |
         /bin/bash -c "
         IP_ADDRESS=\$(hostname -I | awk '{print \$1}')
@@ -66,7 +59,6 @@ autoinstall:
         systemctl restart systemd-hostnamed
         "
   # end user-data
-
   locale: en_NZ.UTF-8
   keyboard:
     layout: us
