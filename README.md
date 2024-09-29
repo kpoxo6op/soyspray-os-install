@@ -57,5 +57,6 @@ apt-get download linux-headers-6.8.0-40-generic
 ## Create Autoinstall USBs
 
 ```sh
-# todo
+# copy driver-build-packages to USB
+# extract  yt6801-linux-driver-1.0.29.zip to USB
 ```
