@@ -1,3 +1,4 @@
+outdated if autoinstall.yaml works
 PS f:\> tree F:\ /A /F
 Folder PATH listing for volume UBUNTU-SERV
 Volume serial number is 6267-CF09
