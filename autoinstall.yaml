@@ -41,9 +41,12 @@ autoinstall:
       - name: root
         lock_passwd: false
         # mkpasswd -m sha-512 123
+        # cannot login unless I reset password with passwd :(
         passwd: "$6$woKNTIGG4EIjt5vX$Ty3PkCtU6.jU286UCGdQNPA7OHPf97BRIFwhzeKEF5qcTrjLgqXxFKa2rSoBm5TzS9Cih.RMgTYOT505vUBGj."
         shell: /bin/bash
         groups: sudo
+        ssh_authorized_keys:
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCr7WZBwguXRF8o+mVtM7iHyzR14nU8bFIQcScSFphYkNEyK3ThkauVEc3zZzGi6F1ZaBS1pDDIBIPO7nASB444jkJAw9rKbkKZYXdqB2B9vIAFCRT8/tnR+ckKtX57C2DlE9924+e6PiOyeZXNMBmqfb35PjszISOKWiZPw42k1yCAcaNnMSZTWp2/7h8yOMFogwhL7xjEGHizBwSqICA0upT39S9PQUiGhRvhjYUqejOUd5zuAd2+wkRgq4kU43alYZjCUPqBJOt4VUQaBi0Ex3vJaijmkYAJ+THU1TvkLZ4dCu4+UvFoKxODLLpFZMPXHJovnn2K2RYuibcMK4KB boris@borex-pc"
     runcmd:
       - dpkg -i /home/*.deb
       - cd /home/yt6801-linux-driver-1.0.29
