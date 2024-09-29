@@ -47,8 +47,11 @@ cat package_list.txt | xargs apt-get download
 Download *MATCHING* Kernel Headers for offline computer
 
 ```sh
-cd ~/driver-build-packages
-apt-get download linux-headers-6.8.0-41-generic
+sudo add-apt-repository ppa:canonical-kernel-team/ppa
+sudo apt update
+# matching `apt search linux-headers` not found, try closest ones
+# apt-get download linux-headers-6.8.0-41-generic
+apt-get download linux-headers-6.8.0-40-generic
 ```
 
 ## Create Autoinstall USBs
