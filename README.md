@@ -12,7 +12,7 @@ Set static IPs with ASUS mobile app via DHCP
 
 ## Notes
 
-Soyo BIOS does no support wake up on LAN.
+Soyo BIOS does not support wake up on LAN.
 
 Soyo Ethernet is not supported by Ubuntu Server out of the box.
 
